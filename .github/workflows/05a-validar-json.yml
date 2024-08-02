@@ -1,0 +1,20 @@
+name: 04a - Validar JSON
+on:
+  push:
+    branches: ["main"]
+jobs:
+    builds:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout repository
+          uses: actions/checkout@v4
+        - name: Setup Node.js 20.x
+          uses: actions/setup-node@v4
+          with:
+                node-version: "20"
+        - name: Installin jsonlint
+          shell: sh
+          run: sudo apt-get install jsonlint
+        - name: Validate JSON
+          shell: sh
+          run: jsonlint-php package.json
